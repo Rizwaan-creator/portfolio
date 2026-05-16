@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rizwaan I — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f7f5f0;
+    --surface: #ffffff;
+    --surface2: #f0ede6;
+    --accent: #b8860b;
+    --accent2: #2a7fa8;
+    --accentlight: #fdf3d8;
+    --text: #1a1814;
+    --muted: #6b6558;
+    --border: rgba(184,134,11,0.18);
+    --bordergray: rgba(0,0,0,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    line-height: 1.7;
+  }
+
+  /* ---- NAVBAR ---- */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: center;
+    padding: 0 60px;
+    height: 64px;
+    background: rgba(247,245,240,0.93);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--bordergray);
+  }
+  .nav-links { display: flex; gap: 4px; list-style: none; }
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    text-decoration: none;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 7px 15px;
+    border-radius: 100px;
+    border: 1px solid transparent;
+    transition: all 0.25s;
+    cursor: pointer;
+    display: block;
+  }
+  .nav-links a:hover {
+    color: var(--accent);
+    border-color: var(--border);
+    background: var(--accentlight);
+  }
+
+  /* ---- HERO ---- */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 100px 60px 80px;
+    position: relative;
+    overflow: hidden;
+    background: var(--bg);
+  }
+  .hero-bg-circle {
+    position: absolute; border-radius: 50%; pointer-events: none;
+  }
+  .hero-bg-circle.c1 {
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(184,134,11,0.08) 0%, transparent 70%);
+    top: -120px; right: -180px;
+    animation: pulse 9s ease-in-out infinite;
+  }
+  .hero-bg-circle.c2 {
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, rgba(42,127,168,0.06) 0%, transparent 70%);
+    bottom: 40px; left: -80px;
+    animation: pulse 12s ease-in-out infinite reverse;
+  }
+  @keyframes pulse {
+    0%,100% { transform:scale(1); opacity:1; }
+    50% { transform:scale(1.12); opacity:0.7; }
+  }
+
+  .hero-content { max-width: 800px; position: relative; z-index: 2; }
+
+  .hero-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    border: 1px solid var(--accent);
+    background: var(--accentlight);
+    padding: 6px 18px;
+    border-radius: 100px;
+    margin-bottom: 28px;
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .hero-name {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 7vw, 5.8rem);
+    font-weight: 900;
+    line-height: 1.0;
+    letter-spacing: -2px;
+    color: var(--text);
+    white-space: nowrap;
+    animation: fadeUp 0.7s ease 0.1s both;
+  }
+  .hero-name span { color: var(--accent); }
+
+  .hero-subtitle {
+    margin-top: 22px;
+    font-size: 1.05rem;
+    color: var(--muted);
+    font-weight: 300;
+    max-width: 560px;
+    line-height: 1.8;
+    animation: fadeUp 0.7s ease 0.2s both;
+  }
+
+  .hero-contacts {
+    display: flex; flex-wrap: wrap; gap: 12px;
+    margin-top: 36px;
+    animation: fadeUp 0.7s ease 0.3s both;
+  }
+  .contact-chip {
+    display: flex; align-items: center; gap: 9px;
+    padding: 9px 18px;
+    background: var(--surface);
+    border: 1px solid var(--bordergray);
+    border-radius: 100px;
+    text-decoration: none;
+    color: var(--text);
+    font-size: 0.83rem;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    transition: all 0.25s;
+  }
+  .contact-chip:hover {
+    border-color: var(--accent);
+    color: var(--accent);
+    background: var(--accentlight);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(184,134,11,0.12);
+  }
+  .contact-chip svg { width:15px; height:15px; flex-shrink:0; }
+
+  .hero-scroll {
+    display: flex; align-items: center; gap: 12px;
+    margin-top: 52px;
+    color: var(--muted);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    animation: fadeUp 0.7s ease 0.4s both;
+  }
+  .scroll-line {
+    height: 1px; width: 60px;
+    background: linear-gradient(to right, var(--accent), transparent);
+    animation: scrollLine 2.2s ease-in-out infinite;
+  }
+  @keyframes scrollLine { 0%,100%{width:60px;} 50%{width:90px;} }
+  @keyframes fadeUp {
+    from { opacity:0; transform:translateY(22px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+
+  /* ---- SECTION COMMON ---- */
+  section { padding: 96px 60px; }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 10px;
+  }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.8px;
+    color: var(--text);
+    margin-bottom: 52px;
+    line-height: 1.1;
+  }
+  .section-divider { height:1px; background:var(--bordergray); margin:0 60px; }
+
+  /* ---- ABOUT ---- */
+  #about { background: var(--surface); }
+  .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:center; }
+  .about-text p { color:var(--muted); font-size:0.97rem; line-height:1.95; margin-bottom:18px; }
+  .about-text p strong { color:var(--text); font-weight:500; }
+  .about-stats { display:grid; grid-template-columns:1fr 1fr; gap:20px; }
+  .stat-box {
+    background:var(--bg); border:1px solid var(--bordergray);
+    border-radius:16px; padding:26px 22px;
+    transition:border-color 0.3s,transform 0.3s,box-shadow 0.3s;
+  }
+  .stat-box:hover { border-color:var(--accent); transform:translateY(-4px); box-shadow:0 8px 24px rgba(184,134,11,0.1); }
+  .stat-num { font-family:'Playfair Display',serif; font-size:2rem; font-weight:900; color:var(--accent); }
+  .stat-label { font-size:0.78rem; color:var(--muted); margin-top:4px; font-family:'DM Mono',monospace; letter-spacing:0.04em; }
+
+  /* ---- SKILLS ---- */
+  #skills { background: var(--bg); }
+  .skills-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:20px; }
+  .skill-card {
+    background:var(--surface); border:1px solid var(--bordergray);
+    border-radius:18px; padding:30px;
+    transition:all 0.3s; position:relative; overflow:hidden;
+    box-shadow:0 1px 4px rgba(0,0,0,0.04);
+  }
+  .skill-card::before {
+    content:''; position:absolute; top:0; left:0; right:0; height:3px;
+    background:linear-gradient(to right,var(--accent),transparent);
+    opacity:0; transition:opacity 0.3s;
+  }
+  .skill-card:hover { border-color:rgba(184,134,11,0.35); transform:translateY(-5px); box-shadow:0 10px 30px rgba(184,134,11,0.1); }
+  .skill-card:hover::before { opacity:1; }
+  .skill-card-icon { width:42px; height:42px; background:var(--accentlight); border-radius:12px; display:flex; align-items:center; justify-content:center; margin-bottom:18px; font-size:1.2rem; }
+  .skill-card h3 { font-size:0.95rem; font-weight:500; color:var(--text); margin-bottom:12px; }
+  .skill-tags { display:flex; flex-wrap:wrap; gap:7px; }
+  .tag { font-family:'DM Mono',monospace; font-size:0.68rem; padding:4px 11px; background:var(--surface2); border:1px solid var(--bordergray); border-radius:6px; color:var(--muted); }
+
+  /* ---- PROJECTS ---- */
+  #projects { background: var(--surface); }
+  .projects-list { display:flex; flex-direction:column; gap:24px; }
+  .project-card {
+    background:var(--bg); border:1px solid var(--bordergray);
+    border-radius:18px; padding:36px;
+    display:grid; grid-template-columns:1fr auto; gap:24px; align-items:start;
+    transition:all 0.3s; box-shadow:0 1px 4px rgba(0,0,0,0.04);
+  }
+  .project-card:hover { border-color:rgba(184,134,11,0.35); transform:translateX(6px); box-shadow:0 6px 24px rgba(184,134,11,0.09); }
+  .project-date {
+    font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--accent);
+    letter-spacing:0.08em; white-space:nowrap;
+    background:var(--accentlight); padding:4px 14px;
+    border-radius:100px; border:1px solid var(--border); height:fit-content;
+  }
+  .project-card h3 { font-family:'Playfair Display',serif; font-size:1.25rem; font-weight:700; color:var(--text); margin-bottom:10px; }
+  .project-card p { color:var(--muted); font-size:0.9rem; line-height:1.85; margin-bottom:14px; }
+  .tech-stack { display:flex; flex-wrap:wrap; gap:7px; margin-top:10px; }
+  .tech-tag { font-family:'DM Mono',monospace; font-size:0.68rem; padding:4px 11px; background:rgba(42,127,168,0.07); border:1px solid rgba(42,127,168,0.18); border-radius:6px; color:var(--accent2); }
+
+  /* ---- EXPERIENCE ---- */
+  #experience { background: var(--bg); }
+  .timeline { position:relative; padding-left:28px; }
+  .timeline::before { content:''; position:absolute; left:0; top:8px; bottom:8px; width:1px; background:linear-gradient(to bottom,var(--accent),transparent); }
+  .timeline-item { position:relative; margin-bottom:36px; }
+  .timeline-item::before { content:''; position:absolute; left:-34px; top:6px; width:12px; height:12px; border-radius:50%; background:var(--accent); box-shadow:0 0 10px rgba(184,134,11,0.4); }
+  .timeline-header { display:flex; align-items:baseline; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:6px; }
+  .timeline-company { font-size:1rem; font-weight:500; color:var(--text); }
+  .timeline-date { font-family:'DM Mono',monospace; font-size:0.7rem; color:var(--accent); background:var(--accentlight); padding:3px 12px; border-radius:100px; border:1px solid var(--border); }
+  .timeline-role { font-size:0.88rem; color:var(--muted); }
+
+  /* ---- CERTIFICATIONS ---- */
+  #certs { background: var(--surface); }
+  .certs-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:18px; }
+  .cert-card { background:var(--bg); border:1px solid var(--bordergray); border-radius:14px; padding:24px; display:flex; align-items:flex-start; gap:16px; transition:all 0.3s; box-shadow:0 1px 4px rgba(0,0,0,0.04); }
+  .cert-card:hover { border-color:var(--accent); transform:translateY(-4px); box-shadow:0 8px 24px rgba(184,134,11,0.1); }
+  .cert-icon { width:38px; height:38px; flex-shrink:0; background:var(--accentlight); border-radius:10px; display:flex; align-items:center; justify-content:center; font-size:1.05rem; }
+  .cert-text h4 { font-size:0.88rem; font-weight:500; color:var(--text); line-height:1.45; }
+  .cert-text span { font-family:'DM Mono',monospace; font-size:0.68rem; color:var(--muted); margin-top:5px; display:block; }
+
+  /* ---- EDUCATION ---- */
+  #education { background: var(--bg); }
+  .edu-cards { display:flex; flex-direction:column; gap:16px; }
+  .edu-card { background:var(--surface); border:1px solid var(--bordergray); border-radius:16px; padding:28px 32px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px; transition:all 0.3s; box-shadow:0 1px 4px rgba(0,0,0,0.04); }
+  .edu-card:hover { border-color:var(--accent); box-shadow:0 6px 20px rgba(184,134,11,0.09); }
+  .edu-left h3 { font-size:0.97rem; font-weight:500; color:var(--text); }
+  .edu-left p { font-size:0.83rem; color:var(--muted); margin-top:3px; }
+  .edu-right { text-align:right; }
+  .edu-right .score { font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:var(--accent); }
+  .edu-right .year { font-family:'DM Mono',monospace; font-size:0.68rem; color:var(--muted); display:block; margin-top:3px; }
+
+  /* ---- FOOTER ---- */
+  footer { background:var(--text); padding:60px; text-align:center; }
+  .footer-name { font-family:'Playfair Display',serif; font-size:2.2rem; font-weight:900; color:var(--accent); margin-bottom:6px; }
+  .footer-sub { color:rgba(255,255,255,0.45); font-size:0.88rem; margin-bottom:30px; }
+  .footer-links { display:flex; justify-content:center; flex-wrap:wrap; gap:18px; margin-bottom:36px; }
+  .footer-link { display:flex; align-items:center; gap:8px; text-decoration:none; color:rgba(255,255,255,0.55); font-size:0.85rem; transition:color 0.3s; }
+  .footer-link:hover { color:var(--accent); }
+  .footer-copy { font-family:'DM Mono',monospace; font-size:0.65rem; color:rgba(255,255,255,0.2); letter-spacing:0.12em; }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width:768px) {
+    nav { padding:0 16px; }
+    .nav-links { gap:2px; flex-wrap:wrap; justify-content:center; }
+    .nav-links a { padding:5px 10px; font-size:0.62rem; }
+    section, #hero, footer { padding:72px 24px; }
+    .section-divider { margin:0 24px; }
+    .about-grid { grid-template-columns:1fr; gap:36px; }
+    .project-card { grid-template-columns:1fr; }
+    .edu-right { text-align:left; }
+    .hero-name { white-space:normal; font-size:clamp(2.6rem,9vw,3.8rem); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#certs">Certifications</a></li>
+    <li><a href="#education">Education</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-circle c1"></div>
+  <div class="hero-bg-circle c2"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Open to Opportunities · 2026</div>
+    <h1 class="hero-name">Rizwaan <span>I.</span></h1>
+    <p class="hero-subtitle">Oracle Fusion HCM &nbsp;·&nbsp; OIC &nbsp;·&nbsp; Embedded Systems &amp; IoT<br>ECE Final Year @ Knowledge Institute of Technology, Salem</p>
+    <div class="hero-contacts">
+      <a href="tel:+919790527646" class="contact-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.18 2 2 0 012.2 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.06-1.06a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        +91 97905 27646
+      </a>
+      <a href="mailto:rizwaanrizwaan957@gmail.com" class="contact-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        rizwaanrizwaan957@gmail.com
+      </a>
+      <a href="https://linkedin.com" target="_blank" class="contact-chip">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <span class="contact-chip" style="cursor:default;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Erode, Tamil Nadu
+      </span>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      Scroll to explore
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-text">
+      <div class="section-label">// 01 — About</div>
+      <h2 class="section-title" style="margin-bottom:28px;">Who I Am</h2>
+      <p>I'm <strong>Rizwaan I</strong>, a final-year B.E. Electronics &amp; Communication Engineering student at Knowledge Institute of Technology, Salem, with a strong passion for enterprise HR technology and embedded systems.</p>
+      <p>I've built hands-on expertise in <strong>Oracle Fusion HCM</strong> — configuring enterprise structures, managing full employee lifecycles, and setting up absence and performance management modules. I'm also deeply interested in <strong>OIC integrations</strong>, IoT sensor systems, and real-time embedded applications.</p>
+      <p>I thrive at the intersection of technology and real-world problem solving — whether that's streamlining HR workflows or building smart solar tracking hardware.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-box"><div class="stat-num">8.0</div><div class="stat-label">Current CGPA</div></div>
+      <div class="stat-box"><div class="stat-num">4+</div><div class="stat-label">Projects Built</div></div>
+      <div class="stat-box"><div class="stat-num">3</div><div class="stat-label">Internships</div></div>
+      <div class="stat-box"><div class="stat-num">5+</div><div class="stat-label">Certifications</div></div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label">// 02 — Skills</div>
+  <h2 class="section-title">Technical Expertise</h2>
+  <div class="skills-grid">
+    <div class="skill-card"><div class="skill-card-icon">☁️</div><h3>Oracle Fusion HCM</h3><div class="skill-tags"><span class="tag">Legal Entities</span><span class="tag">Business Units</span><span class="tag">Departments</span><span class="tag">Jobs &amp; Positions</span><span class="tag">Core HR</span><span class="tag">Employee Lifecycle</span></div></div>
+    <div class="skill-card"><div class="skill-card-icon">🔁</div><h3>Oracle Integration Cloud (OIC)</h3><div class="skill-tags"><span class="tag">Connections</span><span class="tag">Adapters</span><span class="tag">Lookups</span><span class="tag">Data Mappings</span><span class="tag">Inbound/Outbound</span><span class="tag">File-Based Transfer</span></div></div>
+    <div class="skill-card"><div class="skill-card-icon">👥</div><h3>HCM Processes</h3><div class="skill-tags"><span class="tag">Absence Management</span><span class="tag">Performance Mgmt</span><span class="tag">Approval Workflows</span><span class="tag">HCM Reporting</span><span class="tag">Data Consistency</span></div></div>
+    <div class="skill-card"><div class="skill-card-icon">⚙️</div><h3>Hardware &amp; Embedded</h3><div class="skill-tags"><span class="tag">Arduino</span><span class="tag">ESP32</span><span class="tag">LDR Sensor</span><span class="tag">IR Sensor</span><span class="tag">Servo Motor</span><span class="tag">PCB Design</span></div></div>
+    <div class="skill-card"><div class="skill-card-icon">💻</div><h3>Programming</h3><div class="skill-tags"><span class="tag">C</span><span class="tag">Core Java</span><span class="tag">SQL</span><span class="tag">Embedded C</span><span class="tag">HTML</span><span class="tag">CSS</span></div></div>
+    <div class="skill-card"><div class="skill-card-icon">🌟</div><h3>Soft Skills</h3><div class="skill-tags"><span class="tag">Teamwork</span><span class="tag">Time Management</span><span class="tag">Adaptability</span><span class="tag">Continuous Learning</span></div></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-label">// 03 — Projects</div>
+  <h2 class="section-title">What I've Built</h2>
+  <div class="projects-list">
+    <div class="project-card">
+      <div><h3>Absence Management Compliance Tracker</h3><p>Configured a complete Oracle Fusion HCM solution covering Core HR, Absence Management, and enterprise structure setup. Built end-to-end HR workflows, employee data management pipelines, and integration concepts using OIC including inbound/outbound data flows and real-time integration scenarios.</p><div class="tech-stack"><span class="tech-tag">Oracle Fusion HCM</span><span class="tech-tag">OIC</span><span class="tech-tag">Core HR</span><span class="tech-tag">Absence Management</span><span class="tech-tag">HCM Reporting</span></div></div>
+      <div class="project-date">Feb 2026</div>
+    </div>
+    <div class="project-card">
+      <div><h3>Smart Crop Yield Prediction &amp; Irrigation System</h3><p>Developed an IoT-based intelligent system using ESP32 microcontroller with multiple soil sensors to monitor moisture, NPK levels, pH, temperature, and humidity in real time. The system enables data-driven irrigation and yield prediction for smarter agriculture.</p><div class="tech-stack"><span class="tech-tag">ESP32</span><span class="tech-tag">IoT</span><span class="tech-tag">Soil Sensors</span><span class="tech-tag">NPK Sensor</span><span class="tech-tag">Real-Time Monitoring</span></div></div>
+      <div class="project-date">Apr 2026</div>
+    </div>
+    <div class="project-card">
+      <div><h3>Single Axis Solar Tracker</h3><p>Designed and implemented an intelligent solar tracking system that continuously aligns solar panels with the sun's position throughout the day. Achieved significantly improved energy capture compared to traditional static installations by dynamically optimizing sunlight exposure.</p><div class="tech-stack"><span class="tech-tag">Microcontroller</span><span class="tech-tag">LDR Sensor</span><span class="tech-tag">Servo Motor</span><span class="tech-tag">Embedded C</span></div></div>
+      <div class="project-date">Jan 2025</div>
+    </div>
+    <div class="project-card">
+      <div><h3>Digital Object Counter</h3><p>Built an automated digital counting system for production lines, event entry management, and inventory tracking. Uses IR sensor interruption detection to deliver accurate real-time object counts with LCD readout for instant feedback.</p><div class="tech-stack"><span class="tech-tag">Microcontroller</span><span class="tech-tag">IR Sensor</span><span class="tech-tag">LCD Display</span><span class="tech-tag">DC Motor</span><span class="tech-tag">Embedded C</span></div></div>
+      <div class="project-date">Mar 2024</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-label">// 04 — Experience</div>
+  <h2 class="section-title">Internships</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-header"><span class="timeline-company">Durga Tech, Erode</span><span class="timeline-date">August 2024</span></div>
+      <p class="timeline-role">Completed a two-week internship focused on the working principles of various types of electronic sensors and their practical applications.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-header"><span class="timeline-company">United Soft Tech, Salem</span><span class="timeline-date">February 2024</span></div>
+      <p class="timeline-role">Completed a one-week hands-on internship covering PCB design principles and Embedded C programming with practical circuit implementation.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-header"><span class="timeline-company">Marcello Tech, Trichy</span><span class="timeline-date">July 2023</span></div>
+      <p class="timeline-role">Completed a two-week internship in Full-Stack web development, gaining exposure to front-end and back-end technologies and modern web development practices.</p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CERTIFICATIONS -->
+<section id="certs">
+  <div class="section-label">// 05 — Certifications</div>
+  <h2 class="section-title">Credentials &amp; Achievements</h2>
+  <div class="certs-grid">
+    <div class="cert-card"><div class="cert-icon">🏅</div><div class="cert-text"><h4>Oracle Fusion Cloud Applications — HCM Process Essentials</h4><span>Oracle · February 2026</span></div></div>
+    <div class="cert-card"><div class="cert-icon">☁️</div><div class="cert-text"><h4>NPTEL Cloud Computing — 80% Score</h4><span>NPTEL · July – October 2024</span></div></div>
+    <div class="cert-card"><div class="cert-icon">🔐</div><div class="cert-text"><h4>Cybersecurity Workshop</h4><span>Bannari Amman Institute of Technology · March 2024</span></div></div>
+    <div class="cert-card"><div class="cert-icon">🎤</div><div class="cert-text"><h4>Paper Presentation — Solar Panel Energy &amp; Evolution of AI</h4><span>Symposium · March 2024</span></div></div>
+    <div class="cert-card"><div class="cert-icon">🖥️</div><div class="cert-text"><h4>PCB Design with Hands-On Experience</h4><span>KIOT · February 2024</span></div></div>
+    <div class="cert-card"><div class="cert-icon">🐍</div><div class="cert-text"><h4>NPTEL — The Joy of Computing using Python</h4><span>NPTEL · July – October 2023</span></div></div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="section-label">// 06 — Education</div>
+  <h2 class="section-title">Academic Background</h2>
+  <div class="edu-cards">
+    <div class="edu-card"><div class="edu-left"><h3>Knowledge Institute of Technology, Salem</h3><p>B.E — Electronics and Communication Engineering</p></div><div class="edu-right"><div class="score">8.00</div><span class="year">2022 – 2026 · CGPA (7th Sem)</span></div></div>
+    <div class="edu-card"><div class="edu-left"><h3>Govt Boys Higher Secondary School, Erode</h3><p>HSC — Higher Secondary Certificate</p></div><div class="edu-right"><div class="score">74.33%</div><span class="year">2022</span></div></div>
+    <div class="edu-card"><div class="edu-left"><h3>Sri Vasavi Matric High School, Erode</h3><p>SSLC — Secondary School Leaving Certificate</p></div><div class="edu-right"><div class="score">72.80%</div><span class="year">2020</span></div></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Rizwaan I.</div>
+  <p class="footer-sub">Oracle Fusion HCM · OIC · IoT &amp; Embedded Systems</p>
+  <div class="footer-links">
+    <a href="tel:+919790527646" class="footer-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.22 1.18 2 2 0 012.2 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.91 7.91a16 16 0 006.72 6.72l1.06-1.06a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>+91 97905 27646</a>
+    <a href="mailto:rizwaanrizwaan957@gmail.com" class="footer-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>rizwaanrizwaan957@gmail.com</a>
+    <a href="https://linkedin.com" target="_blank" class="footer-link"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+  </div>
+  <p class="footer-copy">© 2026 · RIZWAAN I · ALL RIGHTS RESERVED</p>
+</footer>
+
+</body>
+</html>
